@@ -1,3 +1,28 @@
+# PTR Character Templates (Temucraft fork)
+
+This is Temucraft's fork of [azerothcore/mod-ptr-template](https://github.com/azerothcore/mod-ptr-template) by
+heyitsbench (AGPL-3.0, as is the fork). What the fork changes:
+
+- **Only on the PTR.** Nothing works unless `PtrTemplate.Enable = 1`; with `PtrTemplate.RealmId` set, only on that
+  realm. So the module can be built into Live's worldserver and stays off there.
+- **RBAC permissions instead of security levels:** 104101 `.template enable`, 104102 `.template disable`,
+  104103 see and apply disabled templates, 104150 `.template apply`, 104151 `.template list`
+  (`data/sql/db-auth/ptr_template_rbac.sql`). The five `...Security` options are gone, and the module keeps no
+  `command` rows.
+- **Config keys are prefixed:** `PtrTemplate.DeleteItems`, `PtrTemplate.TemplateLevel` and so on. Copy the new
+  `mod_ptr_template.conf.dist` over an old `.conf`.
+- **Two crash fixes:** `.template apply <name>` for an offline character now says the player wasn't found, and a
+  player who logs out while a template is being applied no longer crashes the server (the steps keep the guid).
+- **Temucraft level-80 sets 80-83** (tier 7 melee and ranged, spell damage, tank, healer) in
+  `data/sql/db-world/ptr_template_set_temucraft.sql`. They copy everything but the tier pieces from template 3.
+
+[mod-temucraft-ptr](https://github.com/Temucraft/mod-temucraft-ptr) uses it from the PTR Quartermaster and for
+copies requested in the launcher, by running `.template apply <name> <index>`.
+
+The upstream README follows.
+
+---
+
 # PTR Character Templates
 
 - AzerothCore build status as of the [latest commit](https://github.com/heyitsbench/mod-ptr-template/commit): [![core-build](https://github.com/heyitsbench/mod-ptr-template/actions/workflows/core-build.yml/badge.svg)](https://github.com/heyitsbench/mod-ptr-template/actions/workflows/core-build.yml)

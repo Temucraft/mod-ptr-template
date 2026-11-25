@@ -3,11 +3,40 @@
 #include "Player.h"
 #include "ReputationMgr.h"
 #include "ScriptMgr.h"
+#include "Realm.h"
 #include "TaskScheduler.h"
+#include "World.h"
 
 #define module_string "ptr-template"
 
 TaskScheduler scheduler;
+
+// Temucraft: RBAC permissions (auth database, data/sql/db-auth/ptr_template_rbac.sql) instead of security levels
+enum PtrTemplatePermissions : uint32
+{
+    RBAC_PTR_TEMPLATE_ENABLE   = 104101, // .template enable
+    RBAC_PTR_TEMPLATE_DISABLE  = 104102, // .template disable
+    RBAC_PTR_TEMPLATE_DISABLED = 104103, // see, and apply, disabled templates
+    RBAC_PTR_TEMPLATE_APPLY    = 104150, // .template apply
+    RBAC_PTR_TEMPLATE_LIST     = 104151  // .template list
+};
+
+// Temucraft: templates work only where PtrTemplate.Enable is on (the PTR), and when PtrTemplate.RealmId is set, only
+// on that realm: a second guard in case the module is built into Live's worldserver too.
+inline bool PtrTemplateRealmAllowed()
+{
+    if (!sConfigMgr->GetOption<bool>("PtrTemplate.Enable", false))
+        return false;
+    uint32 only = sConfigMgr->GetOption<uint32>("PtrTemplate.RealmId", 0);
+    return !only || only == realm.Id.Realm;
+}
+
+// Temucraft: every key of this module is read as PtrTemplate.<name> (all modules share one config space)
+template <typename T>
+inline T PtrTemplateOption(std::string const& name, T def)
+{
+    return sConfigMgr->GetOption<T>("PtrTemplate." + name, def);
+}
 
 enum checkCodes
 {

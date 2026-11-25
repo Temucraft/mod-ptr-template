@@ -1,137 +1,103 @@
 [worldserver]
 
 #
-#    AnnounceEnable
+#    PtrTemplate.Enable
+#        Description: Templates can be listed and applied on this worldserver. Turn it on on the PTR only.
+#        Default:     0 - (Disabled)
+#                     1 - (Enabled)
+
+PtrTemplate.Enable = 0
+
+#
+#    PtrTemplate.RealmId
+#        Description: When not 0, templates also need this realmlist id (a second guard against Live).
+#        Default:     0 - (Any realm where PtrTemplate.Enable is on)
+
+PtrTemplate.RealmId = 0
+
+#
+#    PtrTemplate.AnnounceEnable
 #        Description: Enable the module announcing its presence.
 #        Default:     true  - (Enabled)
 #                     false - (Disabled)
 
-AnnounceEnable = true
+PtrTemplate.AnnounceEnable = true
 
 #
-#    TemplateEnable
+#    PtrTemplate.TemplateEnable
 #        Description: Enable the application of templates.
 #        Default:     true  - (Enabled)
 #                     false - (Disabled)
 
-TemplateEnable = true
+PtrTemplate.TemplateEnable = true
 
 #
-#    LevelEnable
+#    PtrTemplate.LevelEnable
 #        Description: Enable templates to be applied at any level.
 #        Default:     true  - (Enabled, any level)
 #                     false - (Disabled, only at StartPlayerLevel)
 
-LevelEnable = true
+PtrTemplate.LevelEnable = true
 
 #
-#   TemplateAchievements
-#   TemplateBagGear
-#   TemplateDK
-#   TemplateEquipGear
-#   TemplateHomebind
-#   TemplateHotbar
-#   TemplateLevel
-#   TemplateQuests       - false
-#   TemplateReputation
-#   TemplateResources
-#   TemplateSkills
-#   TemplateSpells
-#   TemplateTaximask
-#   TemplateTeleport
+#   PtrTemplate.TemplateAchievements
+#   PtrTemplate.TemplateBagGear
+#   PtrTemplate.TemplateDK
+#   PtrTemplate.TemplateEquipGear
+#   PtrTemplate.TemplateHomebind
+#   PtrTemplate.TemplateHotbar
+#   PtrTemplate.TemplateLevel
+#   PtrTemplate.TemplateQuests       - false
+#   PtrTemplate.TemplateReputation
+#   PtrTemplate.TemplateResources
+#   PtrTemplate.TemplateSkills
+#   PtrTemplate.TemplateSpells
+#   PtrTemplate.TemplateTaximask
+#   PtrTemplate.TemplateTeleport
 #       Description: Enable various aspects of template sets to be applied.
 #       Defaults:    true  - (Enabled)
 #                    false - (Disabled)
 
-TemplateAchievements = true
-TemplateBagGear      = true
-TemplateDK           = true
-TemplateEquipGear    = true
-TemplateHomebind     = true
-TemplateHotbar       = true
-TemplateLevel        = true
-TemplateQuests       = false
-TemplateReputation   = true
-TemplateResources    = true
-TemplateSkills       = true
-TemplateSpells       = true
-TemplateTaximask     = true
-TemplateTeleport     = true
+PtrTemplate.TemplateAchievements = true
+PtrTemplate.TemplateBagGear      = true
+PtrTemplate.TemplateDK           = true
+PtrTemplate.TemplateEquipGear    = true
+PtrTemplate.TemplateHomebind     = true
+PtrTemplate.TemplateHotbar       = true
+PtrTemplate.TemplateLevel        = true
+PtrTemplate.TemplateQuests       = false
+PtrTemplate.TemplateReputation   = true
+PtrTemplate.TemplateResources    = true
+PtrTemplate.TemplateSkills       = true
+PtrTemplate.TemplateSpells       = true
+PtrTemplate.TemplateTaximask     = true
+PtrTemplate.TemplateTeleport     = true
 
 #
-#    DeleteItems
+#    PtrTemplate.DeleteItems
 #        Description: Set whether items in inventory before the template is applied are deleted entirely or sent through the mail.
 #        Default:     true  - (Enabled, delete items in inventory)
 #                     false - (Disabled, send items through mail)
 
-DeleteItems = true
+PtrTemplate.DeleteItems = true
 
 #
-#    LoginTemplateIndex
+#    PtrTemplate.LoginTemplateIndex
 #        Description: Template index to automatically apply to characters on first login.
 #        Default:     0 - (Disabled, no template will be applied)
 
-LoginTemplateIndex = 0
+PtrTemplate.LoginTemplateIndex = 0
 
 #
-#    MaintainImprovedValues
+#    PtrTemplate.MaintainImprovedValues
 #        Description: If the character has better values than what is set in the template, choose whether they are overwritten or not.
 #        Default:     true  - (Enabled, keep the higher values)
 #                     false - (Disabled, overwrite regardless of character values)
 
-MaintainImprovedValues = true
+PtrTemplate.MaintainImprovedValues = true
 
 #
-#    EnableApplySecurity
-#        Description: Set the minimum account security level to apply enabled templates.
-#        Default:     0  - (Enabled, Everyone)
-#                     1  - (Enabled, Mods/GMs/Admins)
-#                     2  - (Enabled, GMs/Admins)
-#                     3  - (Enabled, Admins)
-#                     4  - (Disabled)
-
-EnableApplySecurity = 0
-
-#
-#    DisableApplySecurity
-#        Description: Set the minimum account security level to apply disabled templates.
-#        Default:     3  - (Enabled, Admins)
-#                     0  - (Enabled, Everyone)
-#                     1  - (Enabled, Mods/GMs/Admins)
-#                     2  - (Enabled, GMs/Admins)
-#                     4  - (Disabled)
-
-DisableApplySecurity = 3
-
-#
-#    EnableListSecurity
-#        Description: Set the minimum account security level to list enabled templates.
-#        Default:     0  - (Enabled, Everyone)
-#                     1  - (Enabled, Mods/GMs/Admins)
-#                     2  - (Enabled, GMs/Admins)
-#                     3  - (Enabled, Admins)
-#                     4  - (Disabled)
-
-EnableListSecurity = 0
-
-#
-#    DisableListSecurity
-#        Description: Set the minimum account security level to list disabled templates.
-#        Default:     2  - (Enabled, GMs/Admins)
-#                     0  - (Enabled, Everyone)
-#                     1  - (Enabled, Mods/GMs/Admins)
-#                     3  - (Enabled, Admins)
-#                     4  - (Disabled)
-
-DisableListSecurity = 2
-
-#
-#    StatusSecurityText
-#        Description: Set the minimum account security level to show "Enabled/Disabled" text when listing templates.
-#        Default:     2  - (Enabled, GMs/Admins)
-#                     0  - (Enabled, Everyone)
-#                     1  - (Enabled, Mods/GMs/Admins)
-#                     3  - (Enabled, Admins)
-#                     4  - (Disabled)
-
-StatusSecurityText = 2
+#    Who can use the commands (Temucraft): RBAC permissions, not security levels.
+#        104101 .template enable    104102 .template disable    104103 see and apply disabled templates
+#        104150 .template apply     104151 .template list
+#        Grant or deny them with .rbac account grant/deny (data/sql/db-auth/ptr_template_rbac.sql links them to roles).

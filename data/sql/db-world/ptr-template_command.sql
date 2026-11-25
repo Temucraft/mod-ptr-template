@@ -1,6 +1,5 @@
+-- mod-ptr-template (Temucraft fork): replaces the fork's data/sql/db-world/ptr-template_command.sql.
+-- On Temucraft a `command` row overrides the permission written in the code (ChatCommand.cpp), and `security` is a
+-- SMALLINT read as uint16, so it can't hold the RBAC ids 104101-104151. Like the Temucraft modules, the fork keeps no
+-- `command` rows: the permissions come from the command table in the code and ptr_template_rbac.sql.
 DELETE FROM `command` WHERE `name` IN ('template apply', 'template disable', 'template enable', 'template list');
-INSERT INTO `command` (`name`, `security`, `help`) VALUES
-('template apply', 0, 'Syntax: .template apply $IndexID\nApplies the given template to your character.'),
-('template disable', 3, 'Syntax: .template disable $IndexID\nDisables the given template from being applied.'),
-('template enable', 3, 'Syntax: .template enable $IndexID\nEnables the given template to be applied.'),
-('template list', 0, 'Syntax: .template list\nList character template sets.');
